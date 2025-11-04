@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ContactSection = () => {
   const [name, setName] = useState('');
@@ -14,22 +15,36 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-6 py-16">
+    <section id="contact" className="relative mx-auto max-w-6xl px-6 py-20">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 mx-auto h-40 max-w-5xl rounded-full bg-gradient-to-r from-fuchsia-200/40 via-indigo-200/40 to-sky-200/40 blur-3xl" />
+
       <div className="grid items-start gap-10 md:grid-cols-5">
-        <div className="md:col-span-2">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="md:col-span-2"
+        >
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Let’s build something great</h2>
           <p className="mt-2 text-slate-600">
             Tell me a bit about your project, timeline, and goals. I’ll get back within 1–2 business days.
           </p>
-          <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
+          <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4">
             <div className="flex items-center gap-2 text-slate-700">
               <Mail className="h-4 w-4" /> <span>you@example.com</span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="md:col-span-3">
-          <form onSubmit={handleSubmit} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.08 }}
+          className="md:col-span-3"
+        >
+          <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-200 bg-white/90 p-6 shadow-sm backdrop-blur">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="mb-1 block text-sm font-medium text-slate-700">Name</label>
@@ -38,7 +53,7 @@ const ContactSection = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400"
+                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
                   placeholder="Your name"
                 />
               </div>
@@ -49,7 +64,7 @@ const ContactSection = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400"
+                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
                   placeholder="you@example.com"
                 />
               </div>
@@ -61,7 +76,7 @@ const ContactSection = () => {
                 onChange={(e) => setMessage(e.target.value)}
                 required
                 rows={5}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400"
+                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
                 placeholder="What are you looking to build?"
               />
             </div>
@@ -72,7 +87,7 @@ const ContactSection = () => {
               Send message
             </button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
